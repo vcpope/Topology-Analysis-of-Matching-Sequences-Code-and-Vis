@@ -31,7 +31,7 @@ For transcripts: "DataType_PerfID_Location_Note_DDMMMYYYY.txt", "Transcript_PN_E
 
 For audio: "PerfID_Location_DDMMMYYYY_Source_Note.wav", e.g. "PN_Edinburgh_26Aug2018_Mic_Full.wav"
 
-# Example analysis
+## Example analysis
 
 To run in terminal:
 ``$ python3 analysis_example``
@@ -68,3 +68,7 @@ If matching to transcripts to a script, no need to use combinations:
     for x in range(shownum):  
         combo_extractMatches(transcript_files[x], "Script.txt",
             audio_files[x], audio_files[x], dataType, perfID)
+
+# Thank you
+
+With thanks to Tom Deacon, Ken Deguernel and Tom Gurion for their help debugging the code and contributions.
