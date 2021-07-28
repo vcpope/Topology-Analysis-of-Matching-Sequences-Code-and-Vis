@@ -14,7 +14,7 @@ The code takes in .srt files, which are subtitle files that include timestamp in
 ## Output
 A folder for each comparison that contains: an audio clip for each show for each subsequence, copies of the cleaned transcripts as .txt files and a .csv file that provides information on each matched subsequence in each row, with match IDs, time data and buffer analysis (the buffer analysis is a little idiosyncratic to my research, looking at whether hesitations were more likely immediately before or after a matching sequence).
 
-## How the code works 
+## What the code does 
 
 The files are first processed to remove punctuation and code certain words. The sequence is tested to see that it is long enough before the contiguous sequence search is run. Once a match is located, its information and information on its surroundings (referred to as a buffer in the code) are added to the summary .csv. Clips for each match are created from the audio (.wav) files that match each transcript.
 
