@@ -47,7 +47,7 @@ function wth combinations:
 ### Transcripts
 
     from itertools import combinations
-    from transcriptseqanalysis import combo_extractMatches
+    from transcript_seq_analysis import combo_extractMatches
     shownum = 5 # number of shows 
     transcript_files = your_transcript_files # list of .srt filenames
     audio_files = your_audio_files # .wav files the same order as transcript files
@@ -62,6 +62,7 @@ function wth combinations:
 
 If matching to transcripts to a script, no need to use combinations:
 
+    from transcript_seq_analysis import combo_extractMatches
     shownum = 5 # number of shows
     transcript_files = your_transcript_files 
     audio_files = your_audio_files # in the same order as transcript files
