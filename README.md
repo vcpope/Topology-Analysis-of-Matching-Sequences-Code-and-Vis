@@ -12,6 +12,7 @@ Transferring my code onto GitHub is part of a project to make my research replic
 The code takes in .srt files, which are subtitle files that include timestamp information, and .wav files for audio. Because my PhD looks at structure in performance time I wanted to make sure I could capture timing information along with the content itself.
 
 ## Output
+A folder for each comparison that contains: an audio clip for each show for each subsequence, copies of the cleaned transcripts as .txt files and a .csv file that provides information on each matched subsequence in each row, with match IDs, time data and buffer analysis (the buffer analysis is a little idiosyncratic to my research, looking at whether hesitations were more likely immediately before or after a matching sequence).
 
 ## Script Contents
 The majority of the functions in the code relate to re-formatting it and outputting it in a human-readable .csv to help with further processing.
