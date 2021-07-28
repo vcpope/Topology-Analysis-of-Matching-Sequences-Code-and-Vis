@@ -14,27 +14,20 @@ The code takes in .srt files, which are subtitle files that include timestamp in
 ## Output
 A folder for each comparison that contains: an audio clip for each show for each subsequence, copies of the cleaned transcripts as .txt files and a .csv file that provides information on each matched subsequence in each row, with match IDs, time data and buffer analysis (the buffer analysis is a little idiosyncratic to my research, looking at whether hesitations were more likely immediately before or after a matching sequence).
 
-## Script Contents
-The majority of the functions in the code relate to re-formatting it and outputting it in a human-readable .csv to help with further processing.
+## How the code works 
 
-This code locates matching subsequences between either two timestamped Subtitle Rip (.srt) or a series of .srt files a .txt text file on sample data provided.  
+The files are first processed to remove punctuation and code certain words. The sequence is tested to see that it is long enough before the contiguous sequence search is run. Once a match is located, its information and information on its surroundings (referred to as a buffer in the code) are added to the summary .csv. Clips for each match are created from the audio (.wav) files that match each transcript.
 
-The files are first processed to remove punctuation and code certain words. Clips for each match are created from the audio (.wav) files for the transcript.
+A summary .csv files accompanies the clips as well as cleaned .txt files. It contains location information as well as light analysis the surroundings of the sequence and whether or not the match contains a disfluency (HES).
 
-Two summary .csv files accompany the clips as well as cleaned .txt files. One .csv provides information on the contents and location of matching subsequences, the other on the tokens that didn't match.
-
-Implementation:
-- Code is run in python3 and is a library of helper functions
-- To run an analysis, run the analysis_example.py script also provided
-- If using new performances for analysis, create new perfID and show data in combo_extractMatches() and get_showID() in this file (NB: I aim to change these to input parameters but haven't got around to it yet!)
+# Implementation
+- analys_example.py and transcript_seq_analysis is run in python3. A list of requirements can be found in requirements.txt
+- To test an analysis and get a sense of its outputs, run the analysis_example.py script that runs on sample data 
+- If working with new data, create new perfID and show data in combo_extractMatches() and get_showID() in this file (NB: I aim to change these to input parameters but haven't got around to it yet!)
 - Files and information needed to run code are: transcript/script/vowel list filenames, show audio filenames, data matchtype (Transcript / TranscriptScript) and performance ID
 - File names are used to create folders and identify shows, so the naming convention is important: 
-
-For transcripts: "DataType_PerfID_Location_Note_DDMMMYYYY.txt"
-e.g. "Transcript_PN_Edinburgh_Extract_26Aug2018.txt"
-For audio: "PerfID_Location_DDMMMYYYY_Source_Note.wav"
- e.g. "PN_Edinburgh_26Aug2018_Mic_Full.wav"
-
+For transcripts: "DataType_PerfID_Location_Note_DDMMMYYYY.txt", "Transcript_PN_Edinburgh_Extract_26Aug2018.txt"
+For audio: "PerfID_Location_DDMMMYYYY_Source_Note.wav", e.g. "PN_Edinburgh_26Aug2018_Mic_Full.wav"
 
 # Example analysis
 
@@ -44,7 +37,7 @@ To run in terminal:
 If matching a large number of shows, it is easiest to run the combo_extractMatches 
 function wth combinations:
 
-### Transcripts
+## Transcripts
 
     from itertools import combinations
     from transcript_seq_analysis import combo_extractMatches
@@ -58,7 +51,7 @@ function wth combinations:
         combo_extractMatches(transcript_files[x], transcript_files[y], 
             audio_files[x], audio_files[y], 'data_type', 'perfID')
    
-### Scripts
+## Scripts
 
 If matching to transcripts to a script, no need to use combinations:
 
