@@ -53,9 +53,9 @@ function wth combinations:
         combo_extractMatches(transcript_files[x], transcript_files[y], 
             audio_files[x], audio_files[y], 'data_type', 'perfID')
    
-## Scripts
+## Show Scripts (as opposed to code!)
 
-If matching to transcripts to a script, no need to use combinations:
+If matching to transcripts to a script (the textual basis for a performance), no need to use combinations:
 
     from transcript_seq_analysis import combo_extractMatches
     shownum = 5 # number of shows
