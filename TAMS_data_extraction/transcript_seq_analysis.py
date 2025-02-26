@@ -593,31 +593,31 @@ def buffer_analysis(buffer1, buffer1a, switch):
         if middle1 == middle2:
             break_type = "Substitution"
             break_quant = 1
-        # return break_type, break_quant, hes_count_a, hes_count_b
+        
         else:
             break_type = "Substitution"
             break_quant = 2
-        #  return break_type, break_quant, hes_count_a, hes_count_b
+        
 
     elif middle1 == break2 and end1 == middle2:
         break_type = "Insertion"
         break_quant = 1
-    # return break_type, break_quant, hes_count_a, hes_count_b
+    
 
     elif break1 == middle2 and middle1 == end2:
         break_type = "Insertion"
         break_quant = 1
-    # return break_type, break_quant, hes_count_a, hes_count_b
+    
 
     elif end1 == break2 or break1 == end2:
         break_type = "Insertion"
         break_quant = 2
-    # return break_type, break_quant, hes_count_a, hes_count_b
+    
 
     elif middle1 == middle2:
         break_type = "Same_Middle"
         break_quant = 2
-        # return break_type, break_quant, hes_count_a, hes_count_b
+        
     else:
         break_type = "None"
         break_quant = 3
