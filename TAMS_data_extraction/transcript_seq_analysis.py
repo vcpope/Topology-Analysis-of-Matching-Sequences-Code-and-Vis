@@ -39,9 +39,9 @@ from itertools import combinations
 from TAMS_priors import *
 
 
-def combo_extractMatches(
-    formantFile1, formantFile2, audioFile1, audioFile2, inputDataType, perfID
-):
+def combo_extractMatches(tokenFile1, tokenFile2, 
+                         audioFile1, audioFile2, 
+                         inputDataType, perfID):
 
     # Show information, needs to be manually adjusted if looking at different performances
     # Add a new perfID and relevant data
@@ -63,14 +63,14 @@ def combo_extractMatches(
     buffersize = buffersize_priors[perfID]
 
     # Fromt the input files, find show information
-    show1_index, show1_Time = get_showID(formantFile1, offsets, showLengths, shows)
+    show1_index, show1_Time = get_showID(tokenFile1, offsets, showLengths, shows)
 
     # If the transcript is being compared to a script, there is no second show
     if inputDataType == "TranscriptScript":
         show2_index = show1_index
         show2_Time = 0
     else:
-        show2_index, show2_Time = get_showID(formantFile2, offsets, showLengths, shows)
+        show2_index, show2_Time = get_showID(tokenFile2, offsets, showLengths, shows)
 
     print(f"Show 1 index is {show1_index}, Show 2 index is {show2_index}")
 
@@ -82,7 +82,7 @@ def combo_extractMatches(
     dataType = inputDataType
 
     # Create analysis folder
-    folderName = token_createFolder(formantFile1, formantFile2)
+    folderName = token_createFolder(tokenFile1, tokenFile2)
 
     # print(f'Folder Name is {folderName}')
 
@@ -131,8 +131,8 @@ def combo_extractMatches(
     table = pd.DataFrame(columns=colNames)
     # offcutTable = pd.DataFrame(columns = offcutColNames)
 
-    tableName = summary_tablename(formantFile1, formantFile2)
-    # offcutTableName = offcut_tablename(formantFile1, formantFile2)
+    tableName = summary_tablename(tokenFile1, tokenFile2)
+    # offcutTableName = offcut_tablename(tokenFile1, tokenFile2)
 
     global df_show1
     global df_show2
@@ -140,13 +140,13 @@ def combo_extractMatches(
 
     # Transform files into dataframes
     if dataType == "Transcript":
-        df_show1, tot_hes_1 = transcriptTransform(formantFile1)
-        df_show2, tot_hes_2 = transcriptTransform(formantFile2)
+        df_show1, tot_hes_1 = transcriptTransform(tokenFile1)
+        df_show2, tot_hes_2 = transcriptTransform(tokenFile2)
         ID1 = audioFile1
         ID2 = audioFile2
     elif dataType == "TranscriptScript":
-        df_show1, tot_hes_1 = transcriptTransform(formantFile1)
-        df_show2 = scriptTransform(formantFile2)
+        df_show1, tot_hes_1 = transcriptTransform(tokenFile1)
+        df_show2 = scriptTransform(tokenFile2)
         tot_hes_2 = 0
         show2_Time = 0
         ID1 = audioFile1
@@ -661,9 +661,7 @@ def combo_lcgs(S, T, matchType):
 
     for i in S.itertuples():
         for j in T.itertuples():
-            # 24 Oct - added this as a checker... need to test. Doesn't work cos of tuples stuff.
-            # if str((i+minToken)[1]).lower() == str((j+minToken)[1]).lower():
-            # print("Minimal match criteria met")
+           
             if str(i[1]).lower() == str(j[1]).lower():
                 c = counter[i[0]][j[0]] + 1  # add to counter
                 counter[i[0] + 1][
@@ -911,8 +909,6 @@ def getAudioClip(timeIndices, seqLength, audioFile):
 
 
 def transcriptTransform(origFilename):
-
-    # folderName = 'TEST'
 
     df = pd.DataFrame()
     timestamp = [0.000, 0.000]
