@@ -36,6 +36,7 @@ import wave
 import struct
 import os
 from itertools import combinations
+from TAMS_priors import *
 
 
 def combo_extractMatches(
@@ -54,79 +55,12 @@ def combo_extractMatches(
     global buffersize
     global minToken
 
-    # TODO: Change show data as appropriate
-    if perfID == "SP":
-        # Timestamp for start of show in recording (seconds)
-        offsets = [43, 106, 37, 325, 34, 29, 44, 135, 205, 15]
-        # Duration of show in recording (seconds) + 1
-        showLengths = [2517, 2590, 2671, 2837, 2739, 2320, 2175, 2422, 2715, 2413]
-        # Title of show. NB. The naming of files is important for the matching process.
-        shows = ["16Mar2017", "29Mar2017", "08Apr2017", "24Apr2017", "26Apr2017"]
-        # Identifier for show
-        perfCode = "SP"
-        # Minimum number of tokens
-        minToken = 6
-        # How many tokens either side of a match should be analysed
-        buffersize = 3
-
-    # Set parameters of each show
-    if perfID == "PN":
-        offsets = [0, 17, 17, 13, 12]  # When a show began in the audio (s)
-        showLengths = [3759, 3437, 3649, 3660, 3732]  # Duration of show in seconds
-        shows = [
-            "3Feb2018",
-            "25Jul2018",
-            "11Aug2018",
-            "17Aug2018",
-            "26Aug2018",
-        ]  # Show titles
-        perfCode = "PN"
-        minToken = 6  # Minimum number of tokens
-        buffersize = 3  # How many tokens either side of a match you want to analyse
-
-    if perfID == "LG":
-        offsets = [
-            0,
-            10.04,
-            16.52,
-            22.60,
-            27.76,
-            36.19,
-            40.36,
-            44.87,
-            52.19,
-            58.80,
-            72.76,
-        ]
-        showLengths = [
-            10.04,
-            17.64,
-            23.52,
-            28.60,
-            36.19,
-            41.44,
-            46,
-            53.23,
-            58.80,
-            73.69,
-            89.84,
-        ]
-        shows = [
-            "1Award",
-            "2Panel",
-            "3Chat",
-            "4Interview",
-            "5RedCarpet",
-            "6Colbert",
-            "7RedCarpet",
-            "8RedCarpet",
-            "9Interview",
-            "10Talk",
-            "11Talk",
-        ]
-        perfCode = "LG"
-        minToken = 2  # Minimum number of tokens smaller
-        buffersize = 3
+    offsets = offsets_priors[perfID]
+    showLengths = showLengths_priors[perfID]
+    shows = shows_priors[perfID]
+    perfCode = perfCode_priors[perfID]
+    minToken = minToken_priors[perfID]
+    buffersize = buffersize_priors[perfID]
 
     # Fromt the input files, find show information
     show1_index, show1_Time = get_showID(formantFile1, offsets, showLengths, shows)
@@ -220,19 +154,12 @@ def combo_extractMatches(
 
     print("Data extracted")
 
-    # To sense check df
-    # df_show1.head()
-    # df_show2.head()
-
     # Compare the two shows recursively
     combo_recSearchAndExtract(df_show1, df_show2, audioFile1, audioFile2, "Exact")
 
     # Create .csv files from the dataframes
     table = table.reset_index(drop=True)
     table.to_csv(tableName)
-
-    # offcutTable = offcutTable.groupby(offcutTable.columns.tolist()).size().reset_index().rename(columns={0:'Dup_count'})
-    # offcutTable.to_csv(offcutTableName)
 
     global test_df, test_table
     test_df = df_show1
