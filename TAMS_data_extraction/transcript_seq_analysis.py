@@ -39,12 +39,13 @@ from itertools import combinations
 from TAMS_priors import *
 
 
-def combo_extractMatches(tokenFile1, tokenFile2, 
+def combo_extractMatches(tokenFile1, tokenFile2, #transcript or script .srt or .txt
                          audioFile1, audioFile2, 
                          inputDataType, perfID):
 
-    # Show information, needs to be manually adjusted if looking at different performances
-    # Add a new perfID and relevant data
+    # Add a new perfID and relevant data to priors as required
+    
+    # Time data to track code running times
     ts = time.time()
     start_time = datetime.datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
     print(start_time)
@@ -62,7 +63,7 @@ def combo_extractMatches(tokenFile1, tokenFile2,
     minToken = minToken_priors[perfID]
     buffersize = buffersize_priors[perfID]
 
-    # Fromt the input files, find show information
+    # From the input files, find show information
     show1_index, show1_Time = get_showID(tokenFile1, offsets, showLengths, shows)
 
     # If the transcript is being compared to a script, there is no second show
