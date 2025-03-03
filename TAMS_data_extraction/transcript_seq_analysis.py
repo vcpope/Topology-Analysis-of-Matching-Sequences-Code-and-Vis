@@ -350,7 +350,8 @@ def combo_recSearchAndExtract(
         breakquant_A,
         hes_count_AA,
     ]
-    table = table.append(pd.DataFrame([rowContent], columns=colNames))
+    #table = table.append(pd.DataFrame([rowContent], columns=colNames))
+    table.loc[len(table)] = rowContent
 
     # The following sections create the row contents for show2 buffer analysis
     if (
@@ -430,7 +431,8 @@ def combo_recSearchAndExtract(
             breakquant_A,
             hes_count_AB,
         ]
-        table = table.append(pd.DataFrame([rowContent], columns=colNames))
+        #table = table.append(pd.DataFrame([rowContent], columns=colNames))
+        table.loc[len(table)] = rowContent
     # Otherwise create an audio clip for show2 and write info the table
     else:
         matchID_2 = getAudioClip(timeIndex_show2, contigLen, audioFile2)
@@ -463,7 +465,8 @@ def combo_recSearchAndExtract(
             breakquant_A,
             hes_count_AB,
         ]
-        table = table.append(pd.DataFrame([rowContent], columns=colNames))
+        #table = table.append(pd.DataFrame([rowContent], columns=colNames))
+        table.loc[len(table)] = rowContent
 
     # split the dataframes so the search can be run again
 
@@ -910,6 +913,10 @@ def getAudioClip(timeIndices, seqLength, audioFile):
 
 
 def transcriptTransform(origFilename):
+    
+    start_time = []
+    end_time = []
+    token = []
 
     df = pd.DataFrame()
     timestamp = [0.000, 0.000]
@@ -997,30 +1004,35 @@ def transcriptTransform(origFilename):
                         if newWord:
                             if len(newWord.split()) > 1:
                                 for cut_word in newWord.split():
-                                    newRow = [
-                                        cut_word,
-                                        timestamp[0],
-                                        timestamp[1],
-                                        "Unmatched",
-                                    ]
-                                    # print(newRow)
+                                    # newRow = [
+                                    #     cut_word,
+                                    #     timestamp[0],
+                                    #     timestamp[1],
+                                    #     "Unmatched",
+                                    # ]
+                                    # #print(newRow)
+                                    # df = df.append([newRow])
+                                    token.append(cut_word)
+                                    start_time.append(timestamp[0])
+                                    end_time.append(timestamp[1])
+                                    
                             else:
                                 # print("TRUE")
                                 newRow = [newWord, time1, time2, "Unmatched"]
                                 # df.index
                                 # print(newRow)
-                                try:
-                                    df = df.append([newRow])
-                                except:
-                                    print(f"Time is {timestamp[0]} and {timestamp[1]}")
-                                    print(f"Word is {newWord}")
+                                token.append(newWord)
+                                start_time.append(timestamp[0])
+                                end_time.append(timestamp[1])
     cleanFile.close()
 
     for row in df.itertuples():
         if row[1] == "HES":
             hes_count = hes_count + 1
 
-    df = df.reset_index(drop=True)
+    #df = df.reset_index(drop=True)
+    #df.to_csv('test_df.csv')
+    df = pd.DataFrame(list(zip(token, start_time,end_time)))
 
     print(f"Transcript translated, hes count is {hes_count}")
 
@@ -1131,12 +1143,12 @@ def get_showID(transcriptFile, offsets, showLengths, shows):
 
     return showID, time
 
-# This is to test that code runs properly using sample data
-#combo_extractMatches(
-#    "Data/Transcript_LG_1_cut_Awards1.txt",
-#    "Data/Transcript_LG_5_cut_RedCarpet1.txt",
-#    "Data/LG_Montage_1Award_Mic_Full.wav",
-#    "Data/LG_Montage_5RedCarpet_Mic_Full.wav",
-#    "Transcript",
-#    "LG",
-#)
+#This is to test that code runs properly using sample data
+combo_extractMatches(
+    "LG_input_files/Transcript_LG_1_cut_1Awards.txt",
+    "LG_input_files/Transcript_LG_5_cut_5RedCarpet.txt",
+    "LG_input_files/LG_Montage_1Award_Mic_Full.wav",
+    "LG_input_files/LG_Montage_5RedCarpet_Mic_Full.wav",
+    "Transcript",
+    "LG",
+)
