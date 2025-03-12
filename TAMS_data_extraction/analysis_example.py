@@ -25,7 +25,22 @@
 #    combo_extractMatches(transcript_files[x], "Script.txt",
 #                                           audio_files[x], audio_files[x], dataType, perfID)
 
+# TEST CODE TO COMPARE TWO SHOWS ONLY
+# Change location of file directory
+transcript1 = "Data/Transcript_LG_1_cut_Awards1.txt"
+transcript2 = "Data/Transcript_LG_5_cut_RedCarpet1.txt"
+audio1 = "Data/LG_Montage_1Award_Mic_Full.wav"
+audio2 = "Data/LG_Montage_5RedCarpet_Mic_Full.wav",
+comparison_type = 'Transcript' # Other option is "TranscriptScript"
+# Existing performer IDs in TAMS_priors.py file are LG, SP and PN
+# LG dataset is used to test the code as source data from SP and PN 
+# cannot be shared.
+performer_ID = 'LG' 
+
+
 import TAMS_analysis_functions
 
-combo_extractMatches("Data/Transcript_LG_1_cut_Awards1.txt", "Data/Transcript_LG_5_cut_RedCarpet1.txt", 
-                                            "Data/LG_Montage_1Award_Mic_Full.wav", "Data/LG_Montage_5RedCarpet_Mic_Full.wav",'Transcript', 'LG')
+combo_extractMatches(transcript1, transcript2,
+                     audio1, audio2,
+                     comparison_type,
+                     performer_ID)
