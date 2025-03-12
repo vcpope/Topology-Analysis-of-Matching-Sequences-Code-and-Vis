@@ -25,8 +25,7 @@
 #    combo_extractMatches(transcript_files[x], "Script.txt",
 #                                           audio_files[x], audio_files[x], dataType, perfID)
 
-import transcript_seq_analysis
-from transcript_seq_analysis import combo_extractMatches
+import TAMS_analysis_functions
 
 combo_extractMatches("Data/Transcript_LG_1_cut_Awards1.txt", "Data/Transcript_LG_5_cut_RedCarpet1.txt", 
                                             "Data/LG_Montage_1Award_Mic_Full.wav", "Data/LG_Montage_5RedCarpet_Mic_Full.wav",'Transcript', 'LG')
