@@ -24,7 +24,7 @@ shows_priors = {'SP': ["16Mar2017", "29Mar2017", "08Apr2017", "24Apr2017", "26Ap
                 "6Colbert", "7RedCarpet", "8RedCarpet", "9Interview", 
                 "10Talk", "11Talk",]}
 # In this case, the performance ID and code are the same
-perfCode_priors = perfID
+perfCode_priors = {'SP': 'SP', 'PN': 'PN', 'LG': 'LG'}
 
 # Minimum tokens in contiguous sequences. LG is a very short excerpt for 
 # testing purposes, so has a much lower minimum token requirement.

@@ -1144,11 +1144,11 @@ def get_showID(transcriptFile, offsets, showLengths, shows):
     return showID, time
 
 #This is to test that code runs properly using sample data
-combo_extractMatches(
-    "LG_input_files/Transcript_LG_1_cut_1Awards.txt",
-    "LG_input_files/Transcript_LG_5_cut_5RedCarpet.txt",
-    "LG_input_files/LG_Montage_1Award_Mic_Full.wav",
-    "LG_input_files/LG_Montage_5RedCarpet_Mic_Full.wav",
-    "Transcript",
-    "LG",
-)
+#combo_extractMatches(
+#    "TAMS_LG_Input_Files/Transcript_LG_1_cut_1Awards.txt",
+#    "TAMS_LG_Input_Files/Transcript_LG_5_cut_5RedCarpet.txt",
+#    "TAMS_LG_Input_Files/LG_Montage_1Award_Mic_Full.wav",
+#    "TAMS_LG_Input_Files/LG_Montage_5RedCarpet_Mic_Full.wav",
+#    "Transcript",
+#    "LG",
+#)
