@@ -12,35 +12,6 @@ import java.util.Date;
 // Basingstoke 1 - 34 // 2739
 
 
-// First act comparisons
-/*
-String[] titles = {"Show 1", "Show 2", "Show 3", " Show 4", "Show 5"};
- 
- String[] files = {"OLDFILES/DARLA_SummaryTable_OxHemH1.csv", "OLDFILES/DARLA_SummaryTable_HemHWin1.csv", 
- "OLDFILES/DARLA_SummaryTable_WinLon1.csv", "OLDFILES/DARLA_SummaryTable_LonBas1.csv" };
- //,"DARLA_SummaryTable_HemHWin1.csv"};
- String imageName = "FirstThree.png";
- 
- // Numbers are length of audio in seconds
- 
- int[] offsets = {43, 106, 37, 325, 34};
- int[] baseOffsets = {43, 106, 37, 325, 34};
- int[] showLengths = {2517, 2590, 2670, 2837, 2739};
- */
-/*
-// Second act details
- 
- String[] titles = {"Oxford 2", "Hemel H 2", "Windsor 2", " London 2", "Basingstoke 2"};
- 
- String[] files = {"DARLA_SummaryTable_OxHemH2.csv", "DARLA_SummaryTable_HemHWin2.csv", 
- "DARLA_SummaryTable_WinLon2.csv", "DARLA_SummaryTable_LonBas2.csv" };
- 
- int[] offsets = {29, 44, 135, 205, 15};
- int[] baseOffsets = {29, 44, 135, 205, 15};
- int[] showLengths = {2320, 2175, 2422, 2715, 2413};
- //String imageName = "FirstThree.png";
- */
-
 // Transcript
 /*
 String[] titles = {"Ox1 (text)","Hem1 (text)", "Win1 (text)", "Lon1 (text)", "Bas1 (text)"};
@@ -282,8 +253,6 @@ int[] transcriptLengths = {373, 315, 313, 324,
   365, 345, 515, 471, 
   463, 430, 424, 387, 
   464, 626, 386, 408};
-
-
 
 int showNum = 20;
 int showMax = 20;
