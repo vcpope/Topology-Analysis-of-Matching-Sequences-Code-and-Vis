@@ -1,0 +1,18 @@
+name: Upload to Figshare
+on: [push]
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@master
+     - uses: figshare/github-upload-action@v1.1
+       with:
+         # figshare personal access token
+         FIGSHARE_TOKEN: ${{ secrets.FIGSHARE_TOKEN }}
+         # figshare API endpoint
+         FIGSHARE_ENDPOINT: 'https://api.figshare.com/v2'
+        # existing figshare article id
+         FIGSHARE_ARTICLE_ID: 10.18742/28582688
+        # directory with files to upload
+         DATA_DIR: 'TAMS_data_visualisation'
+          
