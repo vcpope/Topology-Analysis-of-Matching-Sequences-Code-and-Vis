@@ -3,14 +3,6 @@ import java.io.File;
 import java.util.Date;
 
 //CHANGE ALL OF THESE DEPENDING ON WHAT YOU'RE ANALYSING
-// Offsets and Lengths
-
-// Oxford 1 - 43; // 2517
-// Hemel Hempstead 1 - 106 // 2590
-// Windsor 1 - 37 // 2670
-// London 1 - 325; // 2837
-// Basingstoke 1 - 34 // 2739
-
 
 // Transcript
 /*
