@@ -14,5 +14,4 @@ jobs:
         # existing figshare article id
          FIGSHARE_ARTICLE_ID: 28582688
         # directory with files to upload
-         DATA_DIR: 'TAMS_data_visualisation'
-          
+         DATA_DIR: 'Topology-Analysis-of-Matching-Sequences-Code-and-Vis'
