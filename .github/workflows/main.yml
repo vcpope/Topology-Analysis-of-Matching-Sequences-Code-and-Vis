@@ -1,0 +1,14 @@
+ - name: figshare upload action
+  # You may pin to the exact commit or the version.
+  # uses: figshare/github-upload-action@b74304ee494c6cbc76136219193038844fe400c2
+  uses: figshare/github-upload-action@v1.1
+  with:
+    # figshare personal access token
+    FIGSHARE_TOKEN: 
+    # figshare API endpoint
+    FIGSHARE_ENDPOINT: # default is https://api.figshare.com/v2
+    # existing figshare article id
+    FIGSHARE_ARTICLE_ID: 
+    # directory with files to upload
+    DATA_DIR: 
+          
